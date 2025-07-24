@@ -87,7 +87,7 @@ The API should be available at:
 ## 🚢 Deployment
 
 Deployed on **Render**
-👉 `[https://lema-backend.onrender.com/api/users](https://lemaassesmentbackend.onrender.com/)`
+👉 `https://lemaassesmentbackend.onrender.com`
 
 To deploy:
 
