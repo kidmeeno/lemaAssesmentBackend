@@ -2,11 +2,10 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-
-/** @type {import('express').RequestHandler} */
+// GET /api/users?page=1&limit=4
 router.get('/users', (req, res) => {
-  const page = parseInt(req.query.page as string || '1');
-  const limit = parseInt(req.query.limit as string || '4');
+  const page = parseInt(req.query.page || '1');
+  const limit = parseInt(req.query.limit || '4');
   const offset = (page - 1) * limit;
 
   const users = db.prepare(`
@@ -28,11 +27,11 @@ router.get('/users', (req, res) => {
   res.json({ data: users, total });
 });
 
-/** @type {import('express').RequestHandler} */
+// GET /api/users/:id/posts?page=1&limit=5
 router.get('/users/:id/posts', (req, res) => {
   const userId = req.params.id;
-  const page = parseInt(req.query.page as string || '1');
-  const limit = parseInt(req.query.limit as string || '5');
+  const page = parseInt(req.query.page || '1');
+  const limit = parseInt(req.query.limit || '5');
   const offset = (page - 1) * limit;
 
   const posts = db.prepare(`
@@ -53,7 +52,7 @@ router.get('/users/:id/posts', (req, res) => {
   res.json({ user, posts, total: count });
 });
 
-/** @type {import('express').RequestHandler} */
+// DELETE /api/posts/:postId
 router.delete('/posts/:postId', (req, res) => {
   const postId = req.params.postId;
   const stmt = db.prepare(`DELETE FROM posts WHERE id = ?`);
@@ -66,7 +65,7 @@ router.delete('/posts/:postId', (req, res) => {
   res.json({ success: true });
 });
 
-/** @type {import('express').RequestHandler} */
+// POST /api/users/:id/posts
 router.post('/users/:id/posts', (req, res) => {
   const userId = req.params.id;
   const { title, body } = req.body;
@@ -86,5 +85,6 @@ router.post('/users/:id/posts', (req, res) => {
 
   res.status(201).json({ post: newPost });
 });
+
 
 module.exports = router;
