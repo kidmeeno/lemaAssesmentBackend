@@ -29,22 +29,6 @@ This is the backend service for the **Lema** project. It provides a simple RESTf
 
 ---
 
-## 📁 Folder Structure
-
-```
-backend/
-│
-├── db.js                 # Database connection with better-sqlite3
-├── index.js             # Main server entry
-├── routes/
-│   └── users.js         # All API endpoints related to users & posts
-├── data.db              # SQLite database file
-└── README.md
-
-````
-
----
-
 ## 🧪 API Endpoints
 
 > Base URL: `/api`
